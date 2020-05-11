@@ -22,7 +22,7 @@ public class CheckoutPage extends PageBase {
     private By rbPaypal = By.xpath("//span[@class='paypal-text']");
     private By txtCreditCardNo = By.xpath("//*[@id='credit-card-number']");
     private By txtCVV = By.xpath("//*[@id=\"braintree_cc_type_cvv_div\"]/label/span/span");
-    private By btnPurchase = By.xpath("//*[@id=\"checkout\"]/div[2]/div[1]/div[3]/button");
+    private By btnPurchase = By.xpath("//div[@class='opc-submit-step']");
     private By divCreditCardNoError = By.xpath("//*[@id=\"payment_form_braintree\"]/div[2]/div/div[2]/span");
     private By divCVVError = By.xpath("//*[@id='braintree_cc_cid']/following-sibling::div[@class='validation-advice']");
 
@@ -136,5 +136,6 @@ public class CheckoutPage extends PageBase {
 
     public void clickPurchaseOrderButton(){
         syscoLabUI.click(btnPurchase);
+        sleep(3);
     }
 }

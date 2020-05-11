@@ -12,8 +12,9 @@ public class MainMenuPage extends PageBase {
     private By btnCheckout = By.xpath("//button[@title='Proceed To Checkout']");
     private By divCartEmpty = By.className("cart-empty");
     private By btnRemove = By.xpath("//a[@class='action delete']");
+    private By btnEmptyCart = By.xpath("//a[@class='action delete']");
     private By confirmDeleteMessage = By.xpath("//div[text()='Are you sure you would like to remove this item from the shopping cart?']");
-    private By btnOKinConfirmItemDeleteMessage = By.xpath("//span[text()='OK']");
+    private By btnOKinConfirmItemDeleteMessage = By.xpath("//*[@id=\"minicartOffcanvas\"]/div/div[1]/div");
 
 
     public void navigateTo(Pages page){
@@ -22,7 +23,6 @@ public class MainMenuPage extends PageBase {
 
             case HOME:
                 break;
-
             case MY_ACCOUNT:
                 sleep(3000);
                 syscoLabUI.click(lnkMyAccount);
@@ -65,17 +65,30 @@ public class MainMenuPage extends PageBase {
         return !findElements(divCartEmpty,5L).isEmpty();
     }
 
-    public void removeAllItemsFromCart(){
+    public void removeAllItemsFromCart() {
 
-        if(!getCartIsEmpty()){
-//            syscoLabUI.click(btnCheckout);
-//            ShoppingCart.verifyShoppingCartLoaded();
+//        if(!getCartIsEmpty()){
+////            syscoLabUI.click(btnCheckout);
+////            ShoppingCart.verifyShoppingCartLoaded();
+//            syscoLabUI.click(btnRemove);
+//            syscoLabUI.waitTillElementLoaded(confirmDeleteMessage);
+//
+//            JavascriptExecutor executor = (JavascriptExecutor)syscoLabUI.driver;
+//            executor.executeScript("arguments[0].click();", syscoLabUI.driver.findElement(By.xpath("//span[text()='OK']")));
+//            sleep(2);
+//        }
+        if (getCartIsEmpty()) {
+            syscoLabUI.click(btnEmptyCart);
+        } else {
             syscoLabUI.click(btnRemove);
             syscoLabUI.waitTillElementLoaded(confirmDeleteMessage);
 
-            JavascriptExecutor executor = (JavascriptExecutor)syscoLabUI.driver;
+            JavascriptExecutor executor = (JavascriptExecutor) syscoLabUI.driver;
             executor.executeScript("arguments[0].click();", syscoLabUI.driver.findElement(By.xpath("//span[text()='OK']")));
             sleep(2);
         }
+
+
     }
 }
+
