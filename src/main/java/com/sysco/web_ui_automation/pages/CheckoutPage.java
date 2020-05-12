@@ -135,7 +135,8 @@ public class CheckoutPage extends PageBase {
     }
 
     public void clickPurchaseOrderButton(){
-        syscoLabUI.click(btnPurchase);
         sleep(3);
+        syscoLabUI.click(btnPurchase);
+        sleep(5);
     }
 }

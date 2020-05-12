@@ -30,7 +30,7 @@ public class TestBase {
     @BeforeClass
     public void init() {
         testListeners = new SyscoLabListener();
-        syscoLabQCenter = new SyscoLabQCenter();
+        //syscoLabQCenter = new SyscoLabQCenter();
         DriverSetUpUtil.setToRunLocally();
         syscoLabWUI = new SyscoLabWUI(null);
         try {
@@ -52,20 +52,19 @@ public class TestBase {
     public void cleanUp(ITestContext iTestContext) {
         syscoLabWUI.quit();
 
-        try {
-            syscoLabQCenter.setProjectName(Constants.TEST_PROJECT);
-            syscoLabQCenter.setEnvironment(Constants.TEST_ENV);
-
-            syscoLabQCenter.setRelease(Constants.TEST_RELEASE);
-            syscoLabQCenter.setModule(iTestContext.getAttribute("feature").toString());
-            syscoLabQCenter.setFeature(iTestContext.getAttribute("feature").toString());
-            syscoLabQCenter.setClassName(iTestContext.getClass().getName());
-
-            if (Constants.UPDATE_DASHBOARD)
-                SyscoLabReporting.generateJsonFile(SyscoLabListener.getResults(), syscoLabQCenter);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            syscoLabQCenter.setProjectName(Constants.TEST_PROJECT);
+//            syscoLabQCenter.setEnvironment(Constants.TEST_ENV);
+//
+//            syscoLabQCenter.setRelease(Constants.TEST_RELEASE);
+//            syscoLabQCenter.setModule(iTestContext.getAttribute("feature").toString());
+//            syscoLabQCenter.setFeature(iTestContext.getAttribute("feature").toString());
+//            syscoLabQCenter.setClassName(iTestContext.getClass().getName());
+//
+//            if (Constants.UPDATE_DASHBOARD)
+//                SyscoLabReporting.generateJsonFile(SyscoLabListener.getResults(), syscoLabQCenter);
+//
+//        } catch (Exception e) {//           e.printStackTrace();
+    //}
     }
 }
