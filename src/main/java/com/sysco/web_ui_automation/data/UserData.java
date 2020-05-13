@@ -9,19 +9,11 @@ public class UserData {
     private String password;
     private String firstName;
     private String lastName;
-    private String address1;
-    private String suburb;
-    private String state;
-    private String contactNo;
-    private String postCode;
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
+    public String address1;
+    public String suburb;
+    public String state;
+    public String contactNo;
+    public String postCode;
 
     public String getFirstName() {
         return firstName;

@@ -18,6 +18,7 @@ import static com.sysco.web_ui_automation.data.VerficationMessages.MANDATORY_FIE
 @Listeners(SyscoLabListener.class)
 public class ProductCartVerificationTest extends TestBase {
 
+    static CheckOutData checkOutData = new CheckOutData();
     private SoftAssert softAssert;
     UserData registeredUser;
     @BeforeClass
@@ -73,10 +74,6 @@ public class ProductCartVerificationTest extends TestBase {
         String errorMessageSuburb = MyAccount.continueWithEmptySuburb(emptyCheckoutSuburb);
         softAssert.assertEquals(errorMessageSuburb,MANDATORY_FIELD_MESSAGE, "Verify Suburb is Mandatory");
 
-//        UserData emptyCheckoutState = new UserData(UserTypes.EMPTY_STATE);
-//        String errorMessageState = MyAccount.continueWithEmptyState(emptyCheckoutState);
-//        softAssert.assertEquals(errorMessageState,MANDATORY_FIELD_MESSAGE, "Verify State is Mandatory");
-
         UserData emptyCheckoutPostCode = new UserData(UserTypes.EMPTY_POSTCODE);
         String errorMessagePostCode = MyAccount.continueWithEmptyPostCode(emptyCheckoutPostCode);
         softAssert.assertEquals(errorMessagePostCode,MANDATORY_FIELD_MESSAGE, "Verify PostCode is Mandatory");
@@ -85,13 +82,17 @@ public class ProductCartVerificationTest extends TestBase {
         String errorMessagePhoneNo = MyAccount.continueWithEmptyPhoneNo(emptyCheckoutPhoneNo);
         softAssert.assertEquals(errorMessagePhoneNo,MANDATORY_FIELD_MESSAGE, "Verify PhoneNo is Mandatory");
 
-        Checkout.fillAddress(registeredUser.getAddress1());
-        Checkout.fillSuburb(registeredUser.getSuburb());
-        Checkout.searchPostCode(registeredUser.getPostCode());
-        Checkout.selectPostCodeFromSuggestions(0);
-        Checkout.fillContactNo(registeredUser.getContactNo());
-        Checkout.continueCheckout();
+        Checkout.fillAddress(checkOutData);
+
+//        Checkout.fillAddress(registeredUser.getAddress1());
+//        Checkout.fillSuburb(registeredUser.getSuburb());
+//        Checkout.searchPostCode(registeredUser.getPostCode());
+//        Checkout.selectPostCodeFromSuggestions(0);
+//        Checkout.fillContactNo(registeredUser.getContactNo());
 //        Checkout.selectAuthorizeCheckBox(true);
+
+        Checkout.continueCheckout();
+
         softAssert.assertAll();
     }
 

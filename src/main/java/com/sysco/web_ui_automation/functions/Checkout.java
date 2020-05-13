@@ -1,5 +1,6 @@
 package com.sysco.web_ui_automation.functions;
 
+import com.sysco.web_ui_automation.data.CheckOutData;
 import com.sysco.web_ui_automation.data.CreditCardData;
 import com.sysco.web_ui_automation.Types.PaymentMethods;
 import com.sysco.web_ui_automation.pages.CheckoutPage;
@@ -60,11 +61,12 @@ public class Checkout {
     public static void fillAddress(String address){
         checkoutPage.typeInAddress1(address);
     }
+
+    public static void fillAddress(CheckOutData checkOutData){
+        checkoutPage.typeInAddress(checkOutData);
+    }
     public static void fillSuburb(String suburb){
         checkoutPage.typeInSuburb(suburb);
-    }
-    public static void fillState(String state){
-        checkoutPage.typeInState(state);
     }
     public static void fillContactNo(String contactNo){
         checkoutPage.typeInContactNumber(contactNo);

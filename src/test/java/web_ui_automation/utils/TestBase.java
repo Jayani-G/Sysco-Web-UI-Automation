@@ -1,17 +1,12 @@
 package web_ui_automation.utils;
 
-import com.sysco.web_ui_automation.pages.HomePage;
 import com.sysco.web_ui_automation.pages.PageBase;
 import com.sysco.web_ui_automation.utils.DriverSetUpUtil;
 import com.syscolab.qe.core.common.LoggerUtil;
 import com.syscolab.qe.core.reporting.SyscoLabListener;
 import com.syscolab.qe.core.reporting.SyscoLabQCenter;
-import com.syscolab.qe.core.reporting.SyscoLabReporting;
 import com.sysco.web_ui_automation.common.Constants;
 import com.syscolab.qe.core.ui.web.SyscoLabWUI;
-import com.syscolab.qe.core.ui.SyscoLabUI;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

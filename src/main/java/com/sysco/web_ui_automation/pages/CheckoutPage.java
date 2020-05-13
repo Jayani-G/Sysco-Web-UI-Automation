@@ -1,6 +1,8 @@
 package com.sysco.web_ui_automation.pages;
 
 import com.sysco.web_ui_automation.Types.PaymentMethods;
+import com.sysco.web_ui_automation.data.CheckOutData;
+import com.sysco.web_ui_automation.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -12,11 +14,16 @@ public class CheckoutPage extends PageBase {
     private By btnContinueToPayment = By.id("shipping-method-button");
     private By btnPostCodeRemove = By.id("billing:postcodesuburbremove");
     private By divPostCodeAutoComplete =  By.xpath("//*[@class='input-text ui-autocomplete-input']");
-    private By txtPostCode = By.xpath("//div[@id='shipping-new-address-form']/div/label/span[text()='Post Code']/../following-sibling::div/input");
-    private By txtAddress1 = By.xpath("//div[@id='shipping-new-address-form']/fieldset//span[text()='Street Address Line 1']/../following-sibling::div/input");
-    private By txtSuburb =By.xpath("//div[@id='shipping-new-address-form']/div/label/span[text()='Suburb']/../following-sibling::div/input");
-    private By txtState = By.xpath("//div[@id='shipping-new-address-form']/div/label/span[text()='State/Province']/../following-sibling::div/input");
-    private By txtContact = By.xpath("//div[@id='shipping-new-address-form']/div//label/span[text()='Phone Number']/../following-sibling::div/input");
+//    private By txtPostCode = By.xpath("//div[@id='shipping-new-address-form']/div/label/span[text()='Post Code']/../following-sibling::div/input");
+//    private By txtAddress1 = By.xpath("//div[@id='shipping-new-address-form']/fieldset//span[text()='Street Address Line 1']/../following-sibling::div/input");
+//    private By txtSuburb =By.xpath("//div[@id='shipping-new-address-form']/div/label/span[text()='Suburb']/../following-sibling::div/input");
+//    private By txtState = By.xpath("//div[@id='shipping-new-address-form']/div/label/span[text()='State/Province']/../following-sibling::div/input");
+//    private By txtContact = By.xpath("//div[@id='shipping-new-address-form']/div//label/span[text()='Phone Number']/../following-sibling::div/input");
+    private By txtAddress1 = By.xpath("//div[@name='shippingAddress.street.0']//input[@name='street[0]']");
+    private By txtSuburb =By.xpath("//div[@name='shippingAddress.city']//input[@name='city']");
+    private By txtPostCode = By.xpath("//div[@name='shippingAddress.postcode']//input[@name='postcode']");
+    private By txtContact = By.xpath("//div[@name='shippingAddress.telephone']//input[@name='telephone']");
+    private By dpPostCode_NSW = By.xpath("//a[text()=' BARANGAROO New South Wales']");
     private By checkAuthorize = By.id("ns-checkout-shipping-authorize_mm");
     private By rbCreditCard = By.xpath("//strong[@class='card-title']");
     private By rbPaypal = By.xpath("//span[@class='paypal-text']");
@@ -86,9 +93,6 @@ public class CheckoutPage extends PageBase {
     public void typeInSuburb(String suburb){
         syscoLabUI.sendKeys(txtSuburb,suburb);
     }
-    public void typeInState(String state){
-        syscoLabUI.sendKeys(txtState,state);
-    }
 
     public void typeInContactNumber(String contactNo){
         syscoLabUI.sendKeys(txtContact,contactNo);
@@ -138,5 +142,16 @@ public class CheckoutPage extends PageBase {
         sleep(3);
         syscoLabUI.click(btnPurchase);
         sleep(5);
+    }
+
+    public void typeInAddress(CheckOutData checkOutData){
+        syscoLabUI.sendKeys(txtAddress1, checkOutData.address1);
+        syscoLabUI.sendKeys(txtSuburb, checkOutData.suburb);
+        syscoLabUI.sendKeys(txtPostCode,checkOutData.postCode);
+        syscoLabUI.sleep(5);
+        syscoLabUI.waitTillElementLoaded(dpPostCode_NSW);
+        syscoLabUI.click(dpPostCode_NSW);
+        syscoLabUI.sendKeys(txtContact,checkOutData.contactNo);
+        syscoLabUI.sleep(5);
     }
 }
